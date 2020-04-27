@@ -11,6 +11,7 @@ var canvas = {
   defaultHight : 600,
   init: function () {
     this.makeCanvas()
+    
   },
   makeCanvas: function (canvasName, sizeX, sizeY) {
     //initial canvas creation and connection to DOM
@@ -38,6 +39,7 @@ var canvas = {
       currentCanvas = this.element
       canvas.updateCanvasParams()
     }
+    this.element.focus();
     //update canvas to be a blank object onscreen
     canvas.clearCanvas(canvasName)
   },

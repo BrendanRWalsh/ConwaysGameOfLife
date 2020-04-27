@@ -3,20 +3,43 @@ const canvasSize = {
     x: 500,
     y: 500
 }
+const viewPort = {
+    x: 0,
+    y: 0,
+    zoom: 1,
+    moveVal: 1
+}
+const camera = {
+    moveCamera: function () {
+
+        //move viewport x/y
+        if (keys[37]) { viewPort.x -= viewPort.moveVal }
+        if (keys[38]) { viewPort.y -= viewPort.moveVal }
+        if (keys[39]) { viewPort.x += viewPort.moveVal }
+        if (keys[40]) { viewPort.y += viewPort.moveVal }
+
+        //resolve bounding
+        if (viewPort.x < 0) { viewPort.x = 0 }
+        if (viewPort.x + (canvasSize.x / viewPort.zoom) > canvasSize) { viewPort.x = canvasSize.x - (canvasSize.x / viewPort.zoom) }
+        if (viewPort.y < 0) { viewPort.y = 0 }
+        if (viewPort.y + (canvasSize.y / viewPort.zoom) > canvasSize) { viewPort.y = canvasSize.y - (canvasSize.y / viewPort.zoom) }
+    }
+}
 const xVal = canvasSize.x / gridSize
 const yVal = canvasSize.y / gridSize
 let now = performance.now()
-let timeDelay = 0
+let timeDelay = 100
 let cells = []
 let nextGen = []
 const gameOfLife = {
     play: true,
     ui: {},
     init: function () {
-        canvas.makeCanvas('canvas', canvasSize.x, canvasSize.y + 100)
-        mouse.init()
-        this.populateGrid()
-        this.animate()
+        canvas.makeCanvas('canvas', canvasSize.x, canvasSize.y);
+        mouse.init();
+        keyboard.init();
+        this.populateGrid();
+        this.animate();
     },
     animate: function () {
         globalID = requestAnimationFrame(gameOfLife.animate);
@@ -32,6 +55,7 @@ const gameOfLife = {
                 nextGen = []
             }
         }
+        camera.moveCamera();
     },
     populateGrid: function () {
         for (y = 0; y < canvasSize.y / gridSize; y++) {

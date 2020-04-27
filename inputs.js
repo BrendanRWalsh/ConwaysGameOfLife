@@ -1,6 +1,7 @@
 /*
  Input event handlers and logic
  js key event codes at https://keycode.info/ 
+ Left = 37
 */
 keys = []
 lastPress = 0
@@ -34,7 +35,7 @@ var keyboard = {
 var mouse = {
     x: 0,
     y: 0,
-    mouseDown : false,
+    mouseDown: false,
     init: function () {
         console.log('enabling mouse functionality...')
 
@@ -61,16 +62,20 @@ var mouse = {
 
         //mouse wheel events
         window.addEventListener("wheel", e => {
-            mouse.mouseWheel();
+            if (e.deltaY < 0) { mouse.mouseWheel(1) };
+            if (e.deltaY > 0) { mouse.mouseWheel(0) };
         });
     },
-    click: function (e) {mouse.mouseDown = true},
-    unClick: function (e) {mouse.mouseDown = false},
+    click: function (e) { mouse.mouseDown = true },
+    unClick: function (e) { mouse.mouseDown = false },
     rightClick: function (e) {
     },
     moved: function (e) {
     },
-    mouseWheel: function () {
+    mouseWheel: function (dir) {
+        if (dir < 0) { viewPort.zoom -= 1 }
+        if (dir > 0) { viewPort.zoom += 1 }
+        if (viewPort.zoom < 1) { viewPort.zoom = 1 }
     },
     isMouseOver: function (obj) {
         if (mouse.x > obj.x &&

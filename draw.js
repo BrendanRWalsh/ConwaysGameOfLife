@@ -89,7 +89,6 @@ var draw = {
   //draw img directly to canvas
   img: function (image, a, b, c, d, e, f, g, h) {
     //image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight
-    image = image
     ctxt.save();
     if (arguments.length === 3) {
       ctxt.drawImage(image, a, b)
