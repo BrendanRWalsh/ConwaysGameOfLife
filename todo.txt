@@ -1,0 +1,28 @@
+general:
+    bring in FPS.js from other projects, create connection with draw and init
+    create a visual interface to control the system through
+    Ui scripts: both engine and user
+    referencing scripts from other files, tree file structure
+    fullscreen button (press esc to close fullscreen mode yadda yadda)
+
+index.html:
+    
+Canvas.js:
+    figure out how to check add canvas to dom if canvas not already defined in the page
+    ensure the let command in canvas parameter creation doesn't cause conflicts
+    fullscreen behaviour: Stetch, Scale, Maintain size
+
+input.js
+    new coordinate system doesn't scale with canvas...
+    mobile input capture:  touchdown, touchmove, touchup, multitouch
+    gamepad input capture: Button down, joystick capture, tilt capture, touch panel(ps4)
+
+physics.js 
+    make these functions better, properly iterable and flexible.
+    learn physics, your 11 years old 10th grade math doesn't cut it
+
+animation.js   
+    add useful animation functions:
+        sprite timing
+        transformation effects e.g. tweens
+
